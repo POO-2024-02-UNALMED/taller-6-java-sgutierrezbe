@@ -1,9 +1,7 @@
 package vehiculos;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Vehiculo {
     private String placa;
@@ -48,44 +46,12 @@ public class Vehiculo {
     public Fabricante getFabricante() { return fabricante; }
     public void setFabricante(Fabricante fabricante) { this.fabricante = fabricante; }
     public static int getCantidadVehiculos() { return cantidadVehiculos; }
+    public static void setCantidadVehiculos(int cantidad) { cantidadVehiculos = cantidad; }
+    public static List<Vehiculo> getVehiculos() { return vehiculos; }
 
     public static String vehiculosPorTipo() {
         return "Automoviles: " + Automovil.getCantidadAutomoviles() + "\n" +
                "Camionetas: " + Camioneta.getCantidadCamionetas() + "\n" +
                "Camiones: " + Camion.getCantidadCamiones();
-    }
-
-    public static Pais paisMasVendedor() {
-        Map<Pais, Integer> ventasPorPais = new HashMap<>();
-        for (Vehiculo vehiculo : vehiculos) {
-            Pais pais = vehiculo.getFabricante().getPais();
-            ventasPorPais.put(pais, ventasPorPais.getOrDefault(pais, 0) + 1);
-        }
-        Pais paisConMasVentas = null;
-        int maxVentas = 0;
-        for (Map.Entry<Pais, Integer> entry : ventasPorPais.entrySet()) {
-            if (entry.getValue() > maxVentas) {
-                maxVentas = entry.getValue();
-                paisConMasVentas = entry.getKey();
-            }
-        }
-        return paisConMasVentas;
-    }
-
-    public static Fabricante fabricaMayorVentas() {
-        Map<Fabricante, Integer> ventasPorFabricante = new HashMap<>();
-        for (Vehiculo vehiculo : vehiculos) {
-            Fabricante fabricante = vehiculo.getFabricante();
-            ventasPorFabricante.put(fabricante, ventasPorFabricante.getOrDefault(fabricante, 0) + 1);
-        }
-        Fabricante fabricanteConMasVentas = null;
-        int maxVentas = 0;
-        for (Map.Entry<Fabricante, Integer> entry : ventasPorFabricante.entrySet()) {
-            if (entry.getValue() > maxVentas) {
-                maxVentas = entry.getValue();
-                fabricanteConMasVentas = entry.getKey();
-            }
-        }
-        return fabricanteConMasVentas;
     }
 }
